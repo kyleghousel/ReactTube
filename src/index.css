@@ -29,3 +29,17 @@ body {
 #hide-comment-btn {
   margin-top: 1em;
 }
+
+#comment-user {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#comment-user button {
+  height: 50%;
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
