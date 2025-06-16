@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import Search from './Search'
 import Comment from './Comment'
 import HideCommentBtn from './HideCommentBtn'
 
 const CommentList = ({ comments }) => {
-  console.log(comments)
   const [showComments, setShowComments] = useState(true)
+  const [searchText, setSearchText] = useState('')
 
-  console.log(showComments)
+  const filteredComments = comments.filter((comment) => (
+    searchText ? comment.user === searchText : comment
+  ))
 
   return (
     <div id='comments-container'>
@@ -16,8 +19,9 @@ const CommentList = ({ comments }) => {
       />
       <hr style={{ width: '100%', borderTop: '1px solid #ccc', margin: '1rem 0' }}/>
       <h3>{`${comments.length} Comments`}</h3>
+      <Search searchText={searchText} setSearchText={setSearchText}/>
       <div>
-        {showComments && comments.map((comment) => (
+        {showComments && filteredComments.map((comment) => (
           <Comment key={comment.id} {...comment} />
         ))}
       </div>
